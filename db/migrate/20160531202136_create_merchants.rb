@@ -1,7 +1,9 @@
 class CreateMerchants < ActiveRecord::Migration
   def change
-    create_table :merchants do |t|
-      t.string :name
+    enable_extension("citext")
+
+    create_table :merchants, :force => true do |t|
+      t.citext :name
 
       t.timestamps null: false
     end
