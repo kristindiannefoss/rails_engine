@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 20160531231226) do
   add_index "invoice_items", ["item_id"], name: "index_invoice_items_on_item_id", using: :btree
 
   create_table "invoices", force: :cascade do |t|
+    t.citext   "status"
     t.integer  "merchant_id"
     t.integer  "customer_id"
     t.datetime "created_at",  null: false
@@ -65,11 +66,11 @@ ActiveRecord::Schema.define(version: 20160531231226) do
 
   create_table "transactions", force: :cascade do |t|
     t.citext   "credit_card_number"
-    t.citext   "credit_card_expiration"
+    t.citext   "credit_card_expiration_date"
     t.citext   "result"
     t.integer  "invoice_id"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   add_index "transactions", ["invoice_id"], name: "index_transactions_on_invoice_id", using: :btree

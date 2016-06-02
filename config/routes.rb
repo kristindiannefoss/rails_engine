@@ -3,9 +3,6 @@ Rails.application.routes.draw do
   namespace :api, defaults: {format: :json} do
     namespace :v1 do
 
-      # get "/invoices/find", to: "invoices#find"
-      # get "/invoices/find", to: "invoices/search#show"
-
       namespace :customers do
         get "/find", to: "search#show"
         get "/find_all", to: "search#index"
@@ -50,6 +47,9 @@ Rails.application.routes.draw do
         get "/find_all", to: "search#index"
         get "/random", to: "random#show"
         get "/:id/items", to: "items#index"
+        get "/:id/invoices", to: "invoices#index"
+        get "/most_revenue", to: "revenue#index"
+
       end
       resources :merchants, only: [:index, :show]
 

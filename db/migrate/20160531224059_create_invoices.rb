@@ -4,6 +4,7 @@ class CreateInvoices < ActiveRecord::Migration
     enable_extension("citext")
 
     create_table :invoices, :force => true do |t|
+      t.citext :status
       t.references :merchant, index: true, foreign_key: true
       t.references :customer, index: true, foreign_key: true
 

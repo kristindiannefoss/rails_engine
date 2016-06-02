@@ -5,7 +5,7 @@ module Api
         respond_to :json, :xml
 
         def show
-          respond_with Item.find(InvoiceItem.find(params[:id]))
+          respond_with Item.find_by(id: InvoiceItem.find(params[:id]).item_id)
         end
       end
     end

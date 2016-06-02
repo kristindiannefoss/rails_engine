@@ -4,7 +4,7 @@ class CreateTransactions < ActiveRecord::Migration
 
     create_table :transactions, :force => true do |t|
       t.citext :credit_card_number
-      t.citext :credit_card_expiration
+      t.citext :credit_card_expiration_date
       t.citext :result
       t.references :invoice, index: true, foreign_key: true
 

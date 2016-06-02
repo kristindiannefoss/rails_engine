@@ -5,7 +5,8 @@ module Api
         respond_to :json, :xml
 
         def index
-          respond_with Transaction.where(customer_id: params[:id])
+          respond_with Customer.find_by(id: params[:id]).transactions
+
         end
       end
     end

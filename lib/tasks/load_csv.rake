@@ -10,7 +10,9 @@ namespace :load do
         id = row.to_hash['id']
         first_name = row.to_hash['first_name']
         last_name = row.to_hash['last_name']
-        Customer.create(id: id,first_name: first_name, last_name: last_name)
+        created_at = row.to_hash['created_at']
+        updated_at = row.to_hash['updated_at']
+        Customer.create(id: id,first_name: first_name, last_name: last_name, created_at: created_at, updated_at: updated_at)
       end
     end
   end
@@ -23,7 +25,9 @@ namespace :load do
       CSV.foreach(user,:headers => true) do |row|
         id = row.to_hash['id']
         name = row.to_hash['name']
-        Merchant.create(id: id, name: name)
+        created_at = row.to_hash['created_at']
+        updated_at = row.to_hash['updated_at']
+        Merchant.create(id: id, name: name, created_at: created_at, updated_at: updated_at)
       end
     end
   end
@@ -39,7 +43,9 @@ namespace :load do
         description = row.to_hash['description']
         unit_price = row.to_hash['unit_price']
         merchant_id = row.to_hash['merchant_id']
-        Item.create(id: id, name: name, description: description, unit_price: unit_price, merchant_id: merchant_id)
+        created_at = row.to_hash['created_at']
+        updated_at = row.to_hash['updated_at']
+        Item.create(id: id, name: name, description: description, unit_price: unit_price, merchant_id: merchant_id, created_at: created_at, updated_at: updated_at)
       end
     end
   end
@@ -51,9 +57,12 @@ namespace :load do
     user_files.each do |user|
       CSV.foreach(user,:headers => true) do |row|
         id = row.to_hash['id']
+        status = row.to_hash['status']
         merchant_id = row.to_hash['merchant_id']
         customer_id = row.to_hash['customer_id']
-        Invoice.create(id: id, customer_id: customer_id, merchant_id: merchant_id)
+        created_at = row.to_hash['created_at']
+        updated_at = row.to_hash['updated_at']
+        Invoice.create(id: id, status: status, customer_id: customer_id, merchant_id: merchant_id, created_at: created_at, updated_at: updated_at)
       end
     end
   end
@@ -67,9 +76,11 @@ namespace :load do
         id = row.to_hash['id']
         invoice_id = row.to_hash['invoice_id']
         credit_card_number = row.to_hash['credit_card_number']
-        credit_card_expiration = row.to_hash['credit_card_expiration']
+        credit_card_expiration_date = row.to_hash['credit_card_expiration_date']
         result = row.to_hash['result']
-        Transaction.create(id: id, invoice_id: invoice_id, credit_card_number: credit_card_number, credit_card_expiration: credit_card_expiration, result: result)
+        created_at = row.to_hash['created_at']
+        updated_at = row.to_hash['updated_at']
+        Transaction.create(id: id, invoice_id: invoice_id, credit_card_number: credit_card_number, credit_card_expiration_date: credit_card_expiration_date, result: result, created_at: created_at, updated_at: updated_at)
       end
     end
   end
@@ -85,7 +96,9 @@ namespace :load do
         unit_price = row.to_hash['unit_price']
         item_id = row.to_hash['item_id']
         invoice_id = row.to_hash['invoice_id']
-        InvoiceItem.create(id: id, quantity: quantity, unit_price: unit_price,  item_id: item_id, invoice_id: invoice_id)
+        created_at = row.to_hash['created_at']
+        updated_at = row.to_hash['updated_at']
+        InvoiceItem.create(id: id, quantity: quantity, unit_price: unit_price,  item_id: item_id, invoice_id: invoice_id, created_at: created_at, updated_at: updated_at)
       end
     end
   end
