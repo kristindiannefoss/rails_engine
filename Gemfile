@@ -14,6 +14,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'figaro'
 gem 'responders', '~> 2.0'
 gem 'active_model_serializers', '~> 0.10.0'
+# gem 'database_cleaner'
+
 
 group :development, :test do
   gem 'byebug'
@@ -21,6 +23,9 @@ group :development, :test do
   gem 'capybara'
   gem 'launchy'
   gem 'pry'
+  gem 'rspec-rails'
+  gem 'simplecov'
+  gem 'database_cleaner'
 end
 
 group :development do

@@ -4,4 +4,14 @@ class Invoice < ActiveRecord::Base
   has_many :transactions
   has_many :invoice_items
   has_many :items, through: :invoice_items
+
+  # def invoice_total
+  #   invoice_items.map do |item|
+  #     item.total_cost
+  #   end.reduce(:+)
+  # end
+
+  # def invoice_total
+  #
+  # end
 end
