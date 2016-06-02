@@ -8,6 +8,10 @@ module Api
           respond_with Merchant.find_by(merchant_params)
         end
 
+        def index
+          respond_with Merchant.where(merchant_params)
+        end
+
         private
 
           def merchant_params

@@ -7,6 +7,10 @@ module Api
           respond_with Transaction.find_by(transaction_params)
         end
 
+        def index
+          respond_with Transaction.where(transaction_params)
+        end
+
         private
 
           def transaction_params

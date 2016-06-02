@@ -8,6 +8,10 @@ module Api
           respond_with Invoice.find_by(invoice_params)
         end
 
+        def index
+          respond_with Invoice.where(invoice_params)
+        end
+
         private
 
           def invoice_params

@@ -4,7 +4,11 @@ module Api
       class SearchController < ApiController
         respond_to :json, :xml
         def show
-            respond_with Customer.find_by(customer_params)
+          respond_with Customer.find_by(customer_params)
+        end
+
+        def index
+          respond_with Customer.where(customer_params)
         end
 
         private
