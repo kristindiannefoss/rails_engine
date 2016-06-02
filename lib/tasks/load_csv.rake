@@ -65,10 +65,11 @@ namespace :load do
     user_files.each do |user|
       CSV.foreach(user,:headers => true) do |row|
         id = row.to_hash['id']
+        invoice_id = row.to_hash['invoice_id']
         credit_card_number = row.to_hash['credit_card_number']
         credit_card_expiration = row.to_hash['credit_card_expiration']
         result = row.to_hash['result']
-        Transaction.create(id: id, credit_card_number: credit_card_number, credit_card_expiration: credit_card_expiration, result: result)
+        Transaction.create(id: id, invoice_id: invoice_id, credit_card_number: credit_card_number, credit_card_expiration: credit_card_expiration, result: result)
       end
     end
   end
