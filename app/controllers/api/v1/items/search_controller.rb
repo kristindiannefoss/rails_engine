@@ -2,7 +2,7 @@ module Api
   module V1
     module Items
       class SearchController < ApiController
-        respond_to :json, :xml
+        respond_to :json 
 
         def show
           respond_with Item.find_by(item_params)

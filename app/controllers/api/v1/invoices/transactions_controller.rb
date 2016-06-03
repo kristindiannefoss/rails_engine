@@ -2,10 +2,10 @@ module Api
   module V1
     module Invoices
       class TransactionsController < ApiController
-        respond_to :json, :xml
+        respond_to :json
 
         def index
-          respond_with Transaction.where(invoice_id: params[:id])
+          respond_with Invoice.find(params[:id]).transactions
         end
       end
     end

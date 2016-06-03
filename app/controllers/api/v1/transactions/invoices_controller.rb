@@ -2,7 +2,7 @@ module Api
   module V1
     module Transactions
       class InvoicesController < ApiController
-        respond_to :json, :xml
+        respond_to :json 
 
         def show
           respond_with Invoice.find_by(

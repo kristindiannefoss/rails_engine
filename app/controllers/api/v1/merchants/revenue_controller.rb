@@ -2,7 +2,7 @@ module Api
   module V1
     module Merchants
       class RevenueController < ApiController
-        respond_to :json, :xml
+        respond_to :json 
 
         def show
           respond_with Merchant.find(params[:id]).instance_revenue

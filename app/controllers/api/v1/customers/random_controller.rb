@@ -2,7 +2,7 @@ module Api
   module V1
     module Customers
       class RandomController < ApiController
-        respond_to :json, :xml
+        respond_to :json 
 
         def show
           ids = Customer.pluck(:id)

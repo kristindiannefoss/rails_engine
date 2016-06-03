@@ -1,11 +1,11 @@
 module Api
   module V1
-    module Invoices
+    module Customers
       class MerchantsController < ApiController
-        respond_to :json 
+        respond_to :json
 
         def show
-          respond_with Merchant.find(Invoice.find(params[:id]).merchant_id)
+          respond_with Customer.find(params[:id]).favorite_merchant
         end
       end
     end

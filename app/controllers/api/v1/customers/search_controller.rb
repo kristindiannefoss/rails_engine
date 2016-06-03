@@ -2,7 +2,7 @@ module Api
   module V1
     module Customers
       class SearchController < ApiController
-        respond_to :json, :xml
+        respond_to :json 
 
         def show
           respond_with Customer.find_by(customer_params)

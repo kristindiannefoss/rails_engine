@@ -2,7 +2,7 @@ module Api
   module V1
     module Customers
       class TransactionsController < ApiController
-        respond_to :json, :xml
+        respond_to :json 
 
         def index
           respond_with Customer.find_by(id: params[:id]).transactions

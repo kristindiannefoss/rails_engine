@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-
 gem 'rails', '4.2.6'
 gem 'pg', '~> 0.15'
 gem 'sass-rails', '~> 5.0'
@@ -14,8 +13,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'figaro'
 gem 'responders', '~> 2.0'
 gem 'active_model_serializers', '~> 0.10.0'
-# gem 'database_cleaner'
-
 
 group :development, :test do
   gem 'byebug'
@@ -26,10 +23,10 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'simplecov'
   gem 'database_cleaner'
+  gem 'shoulda-matchers'
 end
 
 group :development do
   gem 'web-console', '~> 2.0'
-
   gem 'spring'
 end

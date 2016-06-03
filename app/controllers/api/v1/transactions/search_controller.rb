@@ -2,7 +2,7 @@ module Api
   module V1
     module Transactions
       class SearchController < ApiController
-        respond_to :json, :xml
+        respond_to :json 
 
         def show
           respond_with Transaction.find_by(transaction_params)
