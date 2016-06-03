@@ -15,7 +15,7 @@ describe "InvoiceItems API" do
       it2 = Item.create
 
       ii1 = InvoiceItem.create(quantity: 3, unit_price: 1000,  item_id: it1.id, invoice_id: inv1.id)
-      ii2 = InvoiceItem.create(quantity: 4, unit_price: 2000,  item_id: it2.id, invoice_id: inv2)
+      ii2 = InvoiceItem.create(quantity: 4, unit_price: 2000,  item_id: it2.id, invoice_id: inv2.id)
 
       get "/api/v1/invoice_items"
 
