@@ -6,10 +6,10 @@ describe "InvoiceItems API" do
   describe "GET /invoice_items" do
     it "returns a list of all invoice_items" do
 
-      merchant = Merchant.create(name: "amazon")
+      m1 = Merchant.create(name: "amazon")
 
-      inv1 = Invoice.create(merchant_id: merchant.id, created_at: Date.today)
-      inv2 = Invoice.create(merchant_id: merchant.id, created_at: Date.today)
+      inv1 = Invoice.create(merchant_id: m1.id, created_at: Date.today)
+      inv2 = Invoice.create(merchant_id: m1.id, created_at: Date.today)
 
       it1 = Item.create
       it2 = Item.create

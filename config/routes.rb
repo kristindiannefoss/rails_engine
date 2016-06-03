@@ -40,7 +40,6 @@ Rails.application.routes.draw do
         get "/random", to: "random#show"
         get "/:id/invoice_items", to: "invoice_items#index"
         get "/:id/merchant", to: "merchants#show"
-
         get "/:id/best_day", to: "best_day#show"
         get "/:id/most_revenue", to: "revenue#index"
       end
