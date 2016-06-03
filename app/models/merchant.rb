@@ -21,8 +21,18 @@ class Merchant < ActiveRecord::Base
 
   # GET /api/v1/merchants/:id/revenue returns the total revenue for that merchant across all transactions
 
-  def instance_revenue
-    invoices.joins(:transactions).where(transactions: {result: "success"}).invoice_items.sum('quantity * unit_price')
+  def instance_revenue(date = nil)
+    if date = nil
+      invoices.joins(:transactions).where(transactions: {result: "success"}).invoice_items.sum('quantity * unit_price')
+    else
+      invoices.joins(:transactions).where(transactions: {result: "success"}, invoice: {created_at: "date"}).invoice_items.sum('quantity * unit_price')
+    end
   end
+
+  # GET /api/v1/merchants/:id/revenue?date=x returns the total revenue for that merchant for a specific invoice date x
+
+  # def instance_revenue_by_date(date)
+  #   invoices.joins(:transactions).where(transactions: {result: "success"}, invoice: {created_at: "date"}).invoice_items.sum('quantity * unit_price')
+  # end
 
 end

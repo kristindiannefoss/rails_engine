@@ -27,4 +27,27 @@ describe "Items API" do
       expect(items_unit_price).to match_array(["10.0", "20.0"])
     end
   end
+
+  describe "GET /items/:id" do
+    it "returns a specific item" do
+
+      m1 = Merchant.create
+      it1 = Item.create(name: "this", description: "cool", unit_price: 1000, merchant_id: m1.id)
+
+      get "/api/v1/items/#{it1.id}"
+
+      body = JSON.parse(response.body)
+      item_name = body["name"]
+      item_description = body["description"]
+      item_id = body["id"]
+      item_unit_price = body["unit_price"]
+
+      expect(response.status).to eq 200
+
+      expect(item_id).to eq(it1.id)
+      expect(item_name).to eq("this")
+      expect(item_description).to eq("cool")
+      expect(item_unit_price).to eq("10.0")
+    end
+  end
 end

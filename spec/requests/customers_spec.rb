@@ -20,4 +20,21 @@ describe "Customers API" do
       expect(customer_names).to match_array(["jon", "sam"])
     end
   end
+  describe "GET /customers/:id" do
+    it "returns a specific customer" do
+
+      c1 = Customer.create(first_name: "jon", last_name:"smith")
+
+      get "/api/v1/customers/#{c1.id}"
+
+      body = JSON.parse(response.body)
+      customer_name = body["first_name"]
+      customer_id = body["id"]
+
+      expect(response.status).to eq 200
+
+      expect(customer_id).to eq(c1.id)
+      expect(customer_name).to eq("jon")
+    end
+  end
 end

@@ -31,7 +31,32 @@ describe "InvoiceItems API" do
       expect(invoice_items_quantity).to match_array([3, 4])
       expect(invoice_items_item_id).to match_array([1, 2])
       expect(invoice_items_invoice_id).to match_array([1, 2])
+    end
+  end
 
+  describe "GET /invoice_items/:id" do
+    it "returns a specific invoice_item" do
+      inv  = Invoice.create
+      it = Item.create
+
+      ii = InvoiceItem.create(quantity: 3, unit_price: 1000,  item_id: it.id, invoice_id: inv.id)
+
+      get "/api/v1/invoice_items/#{ii.id}"
+
+      body = JSON.parse(response.body)
+      invoice_item_quantity = body["quantity"]
+      invoice_item_unit_price = body["unit_price"]
+      invoice_item_ids = body["id"]
+      invoice_item_item_id = body["item_id"]
+      invoice_item_invoice_id = body["invoice_id"]
+
+      expect(response.status).to eq 200
+
+      expect(invoice_item_ids).to eq(ii.id)
+      expect(invoice_item_unit_price).to eq("10.0")
+      expect(invoice_item_quantity).to eq(3)
+      expect(invoice_item_item_id).to eq(it.id)
+      expect(invoice_item_invoice_id).to eq(inv.id)
     end
   end
 end
