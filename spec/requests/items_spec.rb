@@ -25,7 +25,6 @@ describe "Items API" do
       expect(item_names).to match_array(["this", "that"])
       expect(item_descriptions).to match_array(["cool", "cooler"])
       expect(items_unit_price).to match_array(["10.0", "20.0"])
-
     end
   end
 end

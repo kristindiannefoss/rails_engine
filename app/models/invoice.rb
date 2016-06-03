@@ -11,7 +11,17 @@ class Invoice < ActiveRecord::Base
   #   end.reduce(:+)
   # end
 
-  # def invoice_total
-  #
-  # end
+  def successful_invoices
+    joins(:transactions).where(result: "success")
+  end
+
+  def invoice_total
+    # successful_invoices
+    #
+    # .each {|invoice| invoice.invoice_items.sum('quantity*unit_price')}
+#
+    # joins(:transactions).where(result: "success").each do |invoice|
+    #   invoice.invoice_items.sum('quantity*unit_price')
+    # end
+  end
 end

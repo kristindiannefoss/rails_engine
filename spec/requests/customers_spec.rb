@@ -5,7 +5,6 @@ describe "Customers API" do
   describe "GET /customers" do
     it "returns a list of all customers" do
 
-
       c1 = Customer.create(first_name: "jon", last_name:"smith")
       c2 = Customer.create(first_name: "sam", last_name:"jones")
 
@@ -19,8 +18,6 @@ describe "Customers API" do
 
       expect(customer_ids).to match_array([c1.id, c2.id])
       expect(customer_names).to match_array(["jon", "sam"])
-
-
     end
   end
 end
