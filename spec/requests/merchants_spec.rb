@@ -1,7 +1,6 @@
 require 'rails_helper'
 require 'database_cleaner'
 
-
 describe "Merchants API" do
   describe "GET /merchants" do
     it "returns a list of all merchants" do
@@ -19,7 +18,6 @@ describe "Merchants API" do
 
       expect(merchant_ids).to match_array([m1.id, m2.id])
       expect(merchant_names).to match_array(["amazon", "etsy"])
-
     end
   end
 
@@ -38,7 +36,8 @@ describe "Merchants API" do
 
       expect(merchant_id).to eq(m1.id)
       expect(merchant_name).to eq("amazon")
-
     end
   end
+
+
 end

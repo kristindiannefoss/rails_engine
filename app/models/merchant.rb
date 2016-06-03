@@ -13,27 +13,26 @@ class Merchant < ActiveRecord::Base
     joins(:invoice_items).group(:id).order('sum(invoice_items.quantity) DESC').limit(number)
   end
 
-  def self.revenue_by_date(date)
-    invoices.joins(:transactions).where(transactions: {result: "success"}).joins(:invoice_items).where(invoices: {created_at: date}).select('sum(invoice_items.quantity)')
-
-    # # binding.pry
-    # joins(:invoice_items).select("sum(invoice_items.quantity * invoice_items.unit_price) AS invoice_total").group(created_at: "date")
+  def total_revenue(date)
+    date ? invoices = Invoice.where(created_at: date) : invoices = Invoice
+    invoices.joins(:invoice_items, :transactions)
+      .where(transactions: {result: "success"})
+      .where(merchant_id: id)
+      .sum("unit_price * quantity").to_s.insert(-3, ".")
   end
 
-  # GET /api/v1/merchants/:id/revenue returns the total revenue for that merchant across all transactions
-
-  def instance_revenue(date = nil)
-    if date == nil
-      invoices.joins(:transactions).where(transactions: {result: "success"}).invoice_items.sum('quantity * unit_price')
-    else
-      invoices.joins(:transactions).where(transactions: {result: "success"}, invoice: {created_at: "date"}).invoice_items.sum('quantity * unit_price')
-    end
+  def customers_with_pending_invoices
+   customer_id =
+     invoices.joins(:transactions)
+     .where(transactions: { result: "failed" })
+     .pluck(:customer_id)
+     Customer.where(id: customer_id)
   end
 
-  # GET /api/v1/merchants/:id/revenue?date=x returns the total revenue for that merchant for a specific invoice date x
-
-  # def instance_revenue_by_date(date)
-  #   invoices.joins(:transactions).where(transactions: {result: "success"}, invoice: {created_at: "date"}).invoice_items.sum('quantity * unit_price')
-  # end
+  def favorite_customer
+    customers.select("customers.*, count(invoices.customer_id) as inv_count")
+      .joins(invoices: :transactions).where("transactions.result = 'success'")
+      .group("customers.id").order("inv_count desc").first
+  end
 
 end

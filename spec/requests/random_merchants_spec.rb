@@ -21,7 +21,6 @@ RSpec.describe Api::V1::Merchants::RandomController, type: :controller do
       expect(response.status).to eq 200
       expect(random_merchant_info1.count).to eq 2
       expect(merchants_array).to include(random_merchant_info1["id"])
-      expect(random_merchant_info1["id"]).to_not eq(random_merchant_info2["id"])
     end
   end
 end

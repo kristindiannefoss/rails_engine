@@ -13,6 +13,7 @@ RSpec.describe Api::V1::Transactions::RandomController, type: :controller do
       t3 = Transaction.create(invoice_id: i2.id, credit_card_number: 4580251236515201, result: "bad")
       t4 = Transaction.create(invoice_id: i2.id, credit_card_number: 4580251236515201, result: "bad")
       t5 = Transaction.create(invoice_id: i2.id, credit_card_number: 4580251236515201, result: "bad")
+      transactions_array = [t1.id, t2.id, t3.id, t4.id, t5.id]
 
       get :show, format: :json
       random_transaction_info1 = JSON.parse(response.body)
@@ -22,7 +23,7 @@ RSpec.describe Api::V1::Transactions::RandomController, type: :controller do
 
       expect(response.status).to eq 200
       expect(random_transaction_info1.count).to eq 4
-      expect(random_transaction_info1["id"]).to_not eq(random_transaction_info2["id"])
+      expect(transactions_array).to include(random_transaction_info1["id"])
     end
   end
 end

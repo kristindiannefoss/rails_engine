@@ -11,11 +11,4 @@ class Customer < ActiveRecord::Base
      .first
   end
 
-  def customers_with_pending_invoices
-   customer_id =
-     invoices.joins(:transactions)
-     .where(transactions: { result: "failed" })
-     .pluck(:customer_id)
-     Customer.where(id: customer_id)
-  end
 end
