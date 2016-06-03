@@ -21,6 +21,8 @@ class Item < ActiveRecord::Base
   end
 
   def best_day
-    invoice_items.joins(:invoice).select("invoice.created_at").group("invoice_items.quantity")
+    invoice_items.joins(:transactions).where("transactions.result = 'success'")
+      .order(quantity: :desc).take(2)
+      .first.invoice.created_at
   end
 end

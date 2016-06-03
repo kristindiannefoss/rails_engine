@@ -2,7 +2,7 @@ module Api
   module V1
     module Invoices
       class SearchController < ApiController
-        respond_to :json 
+        respond_to :json
 
         def show
           respond_with Invoice.find_by(invoice_params)
@@ -15,7 +15,7 @@ module Api
         private
 
           def invoice_params
-            params.permit(:id, :merchant_id, :customer_id, :created_at, :updated_at)
+            params.permit(:id, :status, :merchant_id, :customer_id, :created_at, :updated_at)
           end
       end
     end
