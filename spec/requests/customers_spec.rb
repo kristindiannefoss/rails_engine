@@ -2,6 +2,7 @@ require 'rails_helper'
 require 'database_cleaner'
 
 describe "Customers API" do
+
   describe "GET /customers" do
     it "returns a list of all customers" do
 
@@ -11,16 +12,18 @@ describe "Customers API" do
       get "/api/v1/customers"
 
       body = JSON.parse(response.body)
-      customer_names = body.map {|m| m["first_name"]}
+      customer_first_names = body.map {|m| m["first_name"]}
+      customer_last_names = body.map {|m| m["last_name"]}
       customer_ids = body.map {|m| m["id"]}
 
       expect(response.status).to eq 200
 
       expect(customer_ids).to match_array([c1.id, c2.id])
-      expect(customer_names).to match_array(["jon", "sam"])
+      expect(customer_first_names).to match_array(["jon", "sam"])
+      expect(customer_last_names).to match_array(["smith", "jones"])
     end
   end
-  
+
   describe "GET /customers/:id" do
     it "returns a specific customer" do
 
@@ -29,13 +32,15 @@ describe "Customers API" do
       get "/api/v1/customers/#{c1.id}"
 
       body = JSON.parse(response.body)
-      customer_name = body["first_name"]
+      customer_first_name = body["first_name"]
+      customer_last_name = body["last_name"]
       customer_id = body["id"]
 
       expect(response.status).to eq 200
 
       expect(customer_id).to eq(c1.id)
-      expect(customer_name).to eq("jon")
+      expect(customer_first_name).to eq("jon")
+      expect(customer_last_name).to eq("smith")
     end
   end
 

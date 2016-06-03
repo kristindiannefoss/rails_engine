@@ -4,9 +4,8 @@ module Api
       class MostRevenueController < ApiController
         respond_to :json
 
-        def show
-          item = Item.find(params[:id])
-          respond_with date: item.best_day
+        def index
+          respond_with Item.most_revenue(params[:quantity])
         end
       end
     end

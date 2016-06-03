@@ -11,6 +11,16 @@ require 'spec_helper'
 require 'rspec/rails'
  # http://devblog.avdi.org/2012/08/31/configuring-database_cleaner-with-rails-rspec-capybara-and-selenium/
 
+ Shoulda::Matchers.configure do |config|
+   config.integrate do |with|
+     # Choose a test framework:
+     with.test_framework :rspec
+
+     # Choose a library:
+     with.library :active_record
+     with.library :rails
+   end
+ end
 
 ActiveRecord::Migration.maintain_test_schema!
 
